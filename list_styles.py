@@ -10,20 +10,24 @@ def parse_args() -> argparse.Namespace:
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
-    parser.add_argument(
+     parser.add_argument(
+        "-s",
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
         default="key",
         help="Sort styles by key, privacy, soundness, or speed (default: key).",
     )
     parser.add_argument(
+        "-j",
         "--json",
+
         action="store_true",
         help="Emit JSON instead of a human-readable table.",
     )
-    parser.add_argument(
+     parser.add_argument(
+        "-n",
         "--limit",
-        type=int,
+
         default=0,
         help="Show only the top N rows after sorting (0 = show all).",
     )
