@@ -16,6 +16,12 @@ def parse_args() -> argparse.Namespace:
         default="key",
         help="Sort styles by key, privacy, soundness, or speed (default: key).",
     )
+        parser.add_argument(
+        "--reverse",
+        action="store_true",
+        help="Reverse the sort order (ascending instead of descending).",
+    )
+
     parser.add_argument(
         "--json",
         action="store_true",
@@ -73,6 +79,9 @@ def main() -> int:
     args = parse_args()
 
     styles = sort_styles(args.sort_by)
+    if args.reverse:
+        styles.reverse()
+
 
     if args.limit > 0:
         styles = styles[: args.limit]
