@@ -13,7 +13,7 @@ class Web3Style:
     ux_speed: float    # 0–1
     note: str
 
-
+STYLE_KEYS = ("aztec", "zama", "soundness")
 STYLES: Dict[str, Web3Style] = {
     "aztec": Web3Style(
         key="aztec",
