@@ -16,6 +16,12 @@ def parse_args() -> argparse.Namespace:
         default="key",
         help="Sort styles by key, privacy, soundness, or speed (default: key).",
     )
+        parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Dump raw STYLES dict to stderr as JSON (for debugging).",
+    )
+
     parser.add_argument(
         "--json",
         action="store_true",
@@ -71,6 +77,19 @@ def print_table(styles: List[Web3Style]) -> None:
 
 def main() -> int:
     args = parse_args()
+    if args.debug:
+        import sys
+        debug_payload = {
+            key: {
+                "name": s.name,
+                "privacy": s.privacy,
+                "soundness": s.soundness,
+                "uxSpeed": s.ux_speed,
+                "note": s.note,
+            }
+            for key, s in STYLES.items()
+        }
+        print(json.dumps(debug_payload, indent=2), file=sys.stderr)
 
     styles = sort_styles(args.sort_by)
 
