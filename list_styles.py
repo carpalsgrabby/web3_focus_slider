@@ -4,7 +4,8 @@ from typing import Dict, List
 
 from app import STYLES, Web3Style  # type: ignore
 
-
+# Example:
+#   python list_styles.py --sort-by privacy --limit 2
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="list_styles",
