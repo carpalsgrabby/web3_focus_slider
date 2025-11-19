@@ -10,6 +10,7 @@ def parse_args() -> argparse.Namespace:
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
+      # sort-by choices are intentionally small; extend here when new fields are added.
     parser.add_argument(
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
