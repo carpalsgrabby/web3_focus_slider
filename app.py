@@ -76,6 +76,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
+        p.add_argument(
+        "--show-keys",
+        action="store_true",
+        help="List all available style keys and exit.",
+    )
+
     return p.parse_args()
 
 
@@ -91,6 +97,10 @@ def label(score_val: float) -> str:
 
 def main() -> None:
     args = parse_args()
+    if args.show_keys:
+        for key in STYLES:
+            print(key)
+        return
 
     priv = max(0, min(10, args.privacy))
     snd = max(0, min(10, args.soundness))
