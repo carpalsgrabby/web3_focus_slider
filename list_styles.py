@@ -10,6 +10,12 @@ def parse_args() -> argparse.Namespace:
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
+        parser.add_argument(
+        "--sort-desc",
+        action="store_true",
+        help="Sort in descending order (default) for numeric fields; ignored for key.",
+    )
+
     parser.add_argument(
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
@@ -30,19 +36,21 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def sort_styles(sort_by: str) -> List[Web3Style]:
+def sort_styles(sort_by: str, sort_desc: bool = True) -> List[Web3Style]:
+
     """Return the style profiles sorted according to the requested field."""
     styles: List[Web3Style] = list(STYLES.values())
 
-    if sort_by == "privacy":
-        styles.sort(key=lambda s: s.privacy, reverse=True)
+      if sort_by == "privacy":
+        styles.sort(key=lambda s: s.privacy, reverse=sort_desc)
     elif sort_by == "soundness":
-        styles.sort(key=lambda s: s.soundness, reverse=True)
+        styles.sort(key=lambda s: s.soundness, reverse=sort_desc)
     elif sort_by == "speed":
-        styles.sort(key=lambda s: s.ux_speed, reverse=True)
+        styles.sort(key=lambda s: s.ux_speed, reverse=sort_desc)
     else:
         # sort_by == "key"
-        styles.sort(key=lambda s: s.key)
+        styles.sort(key=lambda s: s.key, reverse=False)
+
 
     return styles
 
@@ -72,7 +80,7 @@ def print_table(styles: List[Web3Style]) -> None:
 def main() -> int:
     args = parse_args()
 
-    styles = sort_styles(args.sort_by)
+        styles = sort_styles(args.sort_by, sort_desc=True)
 
     if args.limit > 0:
         styles = styles[: args.limit]
