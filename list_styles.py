@@ -30,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+# This function is intentionally pure to make unit testing easy.
 def sort_styles(sort_by: str) -> List[Web3Style]:
     """Return the style profiles sorted according to the requested field."""
     styles: List[Web3Style] = list(STYLES.values())
