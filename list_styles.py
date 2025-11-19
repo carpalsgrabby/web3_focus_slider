@@ -59,6 +59,7 @@ def print_table(styles: List[Web3Style]) -> None:
     print(header)
     print("-" * len(header))
 
+       # Truncate name to 26 chars so the table stays aligned.
     for s in styles:
         print(
             f"{s.key:10s} "
