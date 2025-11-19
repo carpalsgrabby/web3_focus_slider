@@ -3,7 +3,7 @@ import json
 from typing import Dict, List
 
 from app import STYLES, Web3Style  # type: ignore
-
+JsonObj = Dict[str, object]
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
@@ -78,7 +78,7 @@ def main() -> int:
         styles = styles[: args.limit]
 
     if args.json:
-        payload: List[Dict[str, object]] = []
+               payload: List[JsonObj] = []
         for s in styles:
             payload.append(
                 {
