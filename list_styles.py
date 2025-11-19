@@ -1,3 +1,13 @@
+#!/usr/bin/env python3
+"""
+list_styles.py
+
+Companion CLI for web3_focus_slider.
+
+Lists the built-in Web3 style profiles and their privacy / soundness / UX speed
+focus values.
+"""
+
 import argparse
 import json
 from typing import Dict, List
