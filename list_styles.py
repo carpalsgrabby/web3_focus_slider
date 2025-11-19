@@ -31,7 +31,12 @@ def parse_args() -> argparse.Namespace:
 
 
 def sort_styles(sort_by: str) -> List[Web3Style]:
-    """Return the style profiles sorted according to the requested field."""
+    """
+    Return the style profiles sorted by the requested field.
+
+    sort_by can be one of: 'key', 'privacy', 'soundness', 'speed'.
+    """
+
     styles: List[Web3Style] = list(STYLES.values())
 
     if sort_by == "privacy":
