@@ -87,7 +87,11 @@ def main() -> None:
     spd = max(0, min(10, args.speed))
 
     print("🎚  web3_focus_slider")
-    print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
+      print(f"Needs -> privacy:  {priv}/10")
+    print(f"         soundness:{snd}/10")
+    print(f"         UX speed: {spd}/10")
+    print("")
+    print("Profiles:")
     print("")
     print("Profiles:")
     for key, style in STYLES.items():
