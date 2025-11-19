@@ -66,6 +66,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
+        p.add_argument(
+        "--debug",
+        action="store_true",
+        help="Print normalized need values for debugging.",
+    )
+
     return p.parse_args()
 
 
@@ -85,6 +91,11 @@ def main() -> None:
     priv = max(0, min(10, args.privacy))
     snd = max(0, min(10, args.soundness))
     spd = max(0, min(10, args.speed))
+    if args.debug:
+        priv_n = clamp01(priv / 10.0)
+        snd_n = clamp01(snd / 10.0)
+        spd_n = clamp01(spd / 10.0)
+        print(f"DEBUG: normalized -> privacy={priv_n:.3f}, soundness={snd_n:.3f}, speed={spd_n:.3f}")
 
     print("🎚  web3_focus_slider")
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
