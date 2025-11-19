@@ -1,3 +1,12 @@
+"""
+list_styles.py
+
+Companion CLI for web3_focus_slider.
+
+Lists the built-in Web3 style profiles and their privacy / soundness / UX speed
+focus values. Output is plain UTF-8 text by default.
+"""
+
 import argparse
 import json
 from typing import Dict, List
