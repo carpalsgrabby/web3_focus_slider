@@ -6,6 +6,9 @@ from typing import Dict
 
 @dataclass
 class Web3Style:
+    """
+    A Web3 stack style profile with emphasis scores on privacy, soundness, and UX speed.
+    """
     key: str
     name: str
     privacy: float     # 0–1
