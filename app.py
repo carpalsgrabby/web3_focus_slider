@@ -63,6 +63,12 @@ def parse_args() -> argparse.Namespace:
         prog="web3_focus_slider",
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
     )
+        p.add_argument(
+        "--style",
+        choices=list(STYLES.keys()),
+        help="Only show a single style profile (aztec, zama, soundness).",
+    )
+
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
@@ -90,6 +96,13 @@ def main() -> None:
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
     print("")
     print("Profiles:")
+
+    styles_iter = STYLES.items()
+    if args.style:
+        styles_iter = [(args.style, STYLES[args.style])]
+
+    for key, style in styles_iter:
+
     for key, style in STYLES.items():
         s = score(style, priv, snd, spd)
         bar = "█" * int(s * 18)
