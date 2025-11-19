@@ -47,7 +47,11 @@ def sort_styles(sort_by: str) -> List[Web3Style]:
     return styles
 
 
-def print_table(styles: List[Web3Style]) -> None:
+def print_table(styles: List[Web3Style], use_unicode: bool = True) -> None:
+    """
+    Print a simple table of style profiles in human-readable form.
+    """
+
     """Print a simple table of style profiles."""
     if not styles:
         print("No styles defined.")
