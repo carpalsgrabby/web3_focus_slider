@@ -59,7 +59,11 @@ def score(style: Web3Style, priv: int, snd: int, speed: int) -> float:
 
 
 def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line arguments for the web3_focus_slider CLI.
+    """
     p = argparse.ArgumentParser(
+
         prog="web3_focus_slider",
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
     )
