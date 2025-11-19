@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+web3_focus_slider
+
+CLI toy for exploring Web3 tradeoffs between privacy, soundness, and UX speed,
+inspired by Aztec-style zk rollups, Zama-style FHE, and soundness-first designs.
+"""
+import argparse
+...
+
 import argparse
 from dataclasses import dataclass
 from typing import Dict
