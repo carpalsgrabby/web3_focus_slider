@@ -10,6 +10,12 @@ def parse_args() -> argparse.Namespace:
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
+        parser.add_argument(
+        "--no-unicode",
+        action="store_true",
+        help="Disable Unicode symbols in human-readable output.",
+    )
+
     parser.add_argument(
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
@@ -47,14 +53,17 @@ def sort_styles(sort_by: str) -> List[Web3Style]:
     return styles
 
 
-def print_table(styles: List[Web3Style]) -> None:
+def print_table(styles: List[Web3Style], use_unicode: bool = True) -> None:
     """Print a simple table of style profiles."""
     if not styles:
         print("No styles defined.")
         return
 
-    print("web3_focus_slider – style profiles")
-    print("")
+    title = "web3_focus_slider – style profiles" if use_unicode else "web3_focus_slider - style profiles"
+    print(title)
+
+
+
     header = f"{'Key':10s} {'Name':26s} {'Privacy':8s} {'Soundness':10s} {'Speed':8s}"
     print(header)
     print("-" * len(header))
@@ -91,8 +100,9 @@ def main() -> int:
                 }
             )
         print(json.dumps(payload, indent=2))
-    else:
-        print_table(styles)
+      else:
+        print_table(styles, use_unicode=not args.no_unicode)
+
 
     return 0
 
