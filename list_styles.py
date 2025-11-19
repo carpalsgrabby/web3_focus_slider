@@ -4,12 +4,18 @@ from typing import Dict, List
 
 from app import STYLES, Web3Style  # type: ignore
 
-
+__version__ = "0.1.0"
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
+        parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
+
     parser.add_argument(
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
