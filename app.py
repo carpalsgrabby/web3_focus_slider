@@ -55,7 +55,10 @@ def score(style: Web3Style, priv: int, snd: int, speed: int) -> float:
     m_snd = 1.0 - abs(snd_n - style.soundness)
     m_spd = 1.0 - abs(spd_n - style.ux_speed)
 
+        # Weigh soundness slightly more than privacy, and UX speed a bit less:
+    # 40% soundness, 35% privacy, 25% UX speed.
     return clamp01(0.4 * m_snd + 0.35 * m_priv + 0.25 * m_spd)
+
 
 
 def parse_args() -> argparse.Namespace:
