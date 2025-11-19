@@ -95,6 +95,7 @@ def main() -> None:
         bar = "█" * int(s * 18)
         print(f"- {style.name:24s} ({key}): {s:.3f} [{label(s)}] {bar}")
         print(f"  {style.note}")
+         print("-" * 40)
     print("")
 
 
