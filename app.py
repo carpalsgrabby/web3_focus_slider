@@ -70,6 +70,9 @@ def parse_args() -> argparse.Namespace:
 
 
 def label(score_val: float) -> str:
+    """
+    Convert a numeric fit score into a qualitative label.
+    """
     if score_val >= 0.8:
         return "excellent"
     if score_val >= 0.65:
@@ -77,6 +80,7 @@ def label(score_val: float) -> str:
     if score_val >= 0.5:
         return "ok"
     return "weak"
+
 
 
 def main() -> None:
