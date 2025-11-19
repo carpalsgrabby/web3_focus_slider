@@ -79,7 +79,7 @@ def label(score_val: float) -> str:
     return "weak"
 
 
-def main() -> None:
+def main() -> int:
     args = parse_args()
 
     priv = max(0, min(10, args.privacy))
@@ -99,4 +99,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
+
