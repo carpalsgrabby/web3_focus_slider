@@ -66,6 +66,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
+        p.add_argument(
+        "--json",
+        action="store_true",
+        help="Emit JSON summary instead of human-readable text.",
+    )
+
     return p.parse_args()
 
 
@@ -78,6 +84,24 @@ def label(score_val: float) -> str:
         return "ok"
     return "weak"
 
+    if args.json:
+        import json
+        payload = []
+        for key, style, s in scored_styles:
+            payload.append(
+                {
+                    "key": style.key,
+                    "name": style.name,
+                    "privacy": style.privacy,
+                    "soundness": style.soundness,
+                    "uxSpeed": style.ux_speed,
+                    "note": style.note,
+                    "fitScore": round(s, 3),
+                    "fitLabel": label(s),
+                }
+            )
+        print(json.dumps(payload, indent=2))
+        return
 
 def main() -> None:
     args = parse_args()
