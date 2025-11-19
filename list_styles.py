@@ -53,8 +53,8 @@ def print_table(styles: List[Web3Style]) -> None:
         print("No styles defined.")
         return
 
-    print("web3_focus_slider – style profiles")
-    print("")
+     print("web3_focus_slider – style profiles")
+    print()
     header = f"{'Key':10s} {'Name':26s} {'Privacy':8s} {'Soundness':10s} {'Speed':8s}"
     print(header)
     print("-" * len(header))
