@@ -74,8 +74,11 @@ def main() -> int:
 
     styles = sort_styles(args.sort_by)
 
-    if args.limit > 0:
+     if args.limit < 0:
+        print(f"WARNING: --limit {args.limit} is negative; ignoring.")
+    elif args.limit > 0:
         styles = styles[: args.limit]
+
 
     if args.json:
         payload: List[Dict[str, object]] = []
