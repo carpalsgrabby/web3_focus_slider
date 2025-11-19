@@ -16,6 +16,12 @@ def parse_args() -> argparse.Namespace:
         default="key",
         help="Sort styles by key, privacy, soundness, or speed (default: key).",
     )
+        parser.add_argument(
+        "--include-note",
+        action="store_true",
+        help="After the table, print each style's note/description.",
+    )
+
     parser.add_argument(
         "--json",
         action="store_true",
@@ -47,7 +53,8 @@ def sort_styles(sort_by: str) -> List[Web3Style]:
     return styles
 
 
-def print_table(styles: List[Web3Style]) -> None:
+def print_table(styles: List[Web3Style], use_unicode: bool = True, include_note: bool = False) -> None:
+
     """Print a simple table of style profiles."""
     if not styles:
         print("No styles defined.")
@@ -58,6 +65,11 @@ def print_table(styles: List[Web3Style]) -> None:
     header = f"{'Key':10s} {'Name':26s} {'Privacy':8s} {'Soundness':10s} {'Speed':8s}"
     print(header)
     print("-" * len(header))
+    if include_note:
+        print("")
+        print("Notes:")
+        for s in styles:
+            print(f"- {s.key}: {s.note}")
 
     for s in styles:
         print(
@@ -92,7 +104,8 @@ def main() -> int:
             )
         print(json.dumps(payload, indent=2))
     else:
-        print_table(styles)
+             print_table(styles, use_unicode=not args.no_unicode, include_note=args.include_note)
+
 
     return 0
 
