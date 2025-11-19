@@ -66,6 +66,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
+        p.add_argument(
+        "--limit",
+        type=int,
+        default=0,
+        help="Show only the top N styles (0 = show all).",
+    )
+
     return p.parse_args()
 
 
@@ -96,6 +103,10 @@ def main() -> None:
         print(f"- {style.name:24s} ({key}): {s:.3f} [{label(s)}] {bar}")
         print(f"  {style.note}")
     print("")
+    scored_styles.sort(key=lambda x: x[2], reverse=True)
+
+    if args.limit > 0:
+        scored_styles = scored_styles[: args.limit]
 
 
 if __name__ == "__main__":
