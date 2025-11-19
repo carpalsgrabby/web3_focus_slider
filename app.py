@@ -3,6 +3,7 @@ import argparse
 from dataclasses import dataclass
 from typing import Dict
 
+__version__ = "0.1.0"
 
 @dataclass
 class Web3Style:
@@ -62,6 +63,11 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(
         prog="web3_focus_slider",
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
+    )
+        p.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     p.add_argument("--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
