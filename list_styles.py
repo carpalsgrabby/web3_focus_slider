@@ -1,20 +1,3 @@
-#!/usr/bin/env python3
-"""
-list_styles.py
-
-Companion CLI for web3_focus_slider.
-
-Lists the built-in Web3 style profiles (Aztec-style zk rollup, Zama-style FHE,
-soundness-first protocol) and shows their raw privacy / soundness / UX speed
-focus values.
-
-Usage:
-
-  python list_styles.py
-  python list_styles.py --sort-by privacy
-  python list_styles.py --sort-by soundness --json
-"""
-
 import argparse
 import json
 from typing import Dict, List
