@@ -10,6 +10,12 @@ def parse_args() -> argparse.Namespace:
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
     )
+        parser.add_argument(
+        "--json-compact",
+        action="store_true",
+        help="Emit compact JSON without indentation.",
+    )
+
     parser.add_argument(
         "--sort-by",
         choices=("key", "privacy", "soundness", "speed"),
@@ -90,7 +96,11 @@ def main() -> int:
                     "note": s.note,
                 }
             )
-        print(json.dumps(payload, indent=2))
+               if args.json_compact:
+            print(json.dumps(payload))
+        else:
+            print(json.dumps(payload, indent=2))
+
     else:
         print_table(styles)
 
