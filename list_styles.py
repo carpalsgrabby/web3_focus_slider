@@ -97,5 +97,7 @@ def main() -> int:
     return 0
 
 
+# CLI entrypoint.
 if __name__ == "__main__":
     raise SystemExit(main())
+
