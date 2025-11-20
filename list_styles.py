@@ -82,17 +82,16 @@ def print_table(styles: List[Web3Style]) -> None:
 
     print("web3_focus_slider – style profiles")
     print("")
-    header = f"{'Key':10s} {'Name':26s} {'Privacy':8s} {'Soundness':10s} {'Speed':8s}"
+      header = f"{'Key':10s} {'Name':26s} {'Privacy':8s} {'Soundness':10s} {'Speed':8s}"
     print(header)
     print("-" * len(header))
 
-    for s in styles:
         print(
             f"{s.key:10s} "
             f"{s.name[:26]:26s} "
-            f"{s.privacy:0.2f}    "
-            f"{s.soundness:0.2f}      "
-            f"{s.ux_speed:0.2f}"
+            f"{s.privacy:>7.2f} "
+            f"{s.soundness:>9.2f} "
+            f"{s.ux_speed:>7.2f}"
         )
 
 
