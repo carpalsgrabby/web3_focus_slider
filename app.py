@@ -56,6 +56,9 @@ STYLES: Dict[str, Web3Style] = {
 
 
 def clamp01(x: float) -> float:
+    """
+    Clamp a float value to the inclusive range [0.0, 1.0].
+    """
     return max(0.0, min(1.0, x))
 
 
