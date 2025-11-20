@@ -60,6 +60,7 @@ def sort_styles(sort_by: str) -> List[Web3Style]:
 
     styles: List[Web3Style] = list(STYLES.values())
 
+       # For privacy/soundness/speed, sort by highest value first; for key, use lexicographic order.
     if sort_by == "privacy":
         styles.sort(key=lambda s: s.privacy, reverse=True)
     elif sort_by == "soundness":
