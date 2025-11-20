@@ -63,9 +63,13 @@ def clamp01(x: float) -> float:
 
 
 def score(style: Web3Style, priv: int, snd: int, speed: int) -> float:
+    """
+    Compute a normalized fit score (0–1) between user needs and a Web3 style.
+    """
     priv_n = clamp01(priv / 10.0)
     snd_n = clamp01(snd / 10.0)
     spd_n = clamp01(speed / 10.0)
+
 
     m_priv = 1.0 - abs(priv_n - style.privacy)
     m_snd = 1.0 - abs(snd_n - style.soundness)
