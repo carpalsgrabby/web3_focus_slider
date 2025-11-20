@@ -37,6 +37,12 @@ def parse_args() -> argparse.Namespace:
         default="key",
         help="Sort styles by key, privacy, soundness, or speed (default: key).",
     )
+        parser.add_argument(
+        "--keys-only",
+        action="store_true",
+        help="Print only style keys (one per line) and exit.",
+    )
+
     parser.add_argument(
         "--json",
         action="store_true",
@@ -99,6 +105,10 @@ def main() -> int:
     args = parse_args()
 
     styles = sort_styles(args.sort_by)
+    if args.keys_only:
+        for s in styles:
+            print(s.key)
+        return 0
 
      if args.limit < 0:
         print(f"WARNING: --limit {args.limit} is negative; ignoring.")
