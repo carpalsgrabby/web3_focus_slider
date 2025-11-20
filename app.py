@@ -26,7 +26,7 @@ class Web3Style:
     ux_speed: float    # 0–1
     note: str
 
-
+# Built-in style profiles keyed by a short identifier for CLI use.
 STYLES: Dict[str, Web3Style] = {
     "aztec": Web3Style(
         key="aztec",
