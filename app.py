@@ -155,6 +155,7 @@ def main() -> int:
         print(f"- {style.name:24s} ({key}): {s:.3f} [{lbl}] {bar}")
 
         print(f"  {style.note}")
+         print("-" * 40)
     print("")
 
 
