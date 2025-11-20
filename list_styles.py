@@ -16,6 +16,11 @@ from app import STYLES, Web3Style  # type: ignore
 
 __version__ = "0.1.0"
 def parse_args() -> argparse.Namespace:
+    """
+    Parse command-line arguments for the list_styles CLI.
+    """
+    parser = argparse.ArgumentParser(
+
     parser = argparse.ArgumentParser(
         prog="list_styles",
         description="List raw Web3 style profiles used by web3_focus_slider.",
