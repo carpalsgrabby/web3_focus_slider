@@ -107,9 +107,19 @@ def label(score_val: float) -> str:
 def main() -> None:
     args = parse_args()
 
-    priv = max(0, min(10, args.privacy))
-    snd = max(0, min(10, args.soundness))
-    spd = max(0, min(10, args.speed))
+      priv = args.privacy
+    snd = args.soundness
+    spd = args.speed
+
+    if not (0 <= priv <= 10):
+        print(f"WARNING: --privacy {priv} is out of range, clamping to [0,10].")
+        priv = max(0, min(10, priv))
+    if not (0 <= snd <= 10):
+        print(f"WARNING: --soundness {snd} is out of range, clamping to [0,10].")
+        snd = max(0, min(10, snd))
+    if not (0 <= spd <= 10):
+        print(f"WARNING: --speed {spd} is out of range, clamping to [0,10].")
+        spd = max(0, min(10, spd))
 
     print("🎚  web3_focus_slider")
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
