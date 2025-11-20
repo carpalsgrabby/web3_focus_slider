@@ -151,7 +151,9 @@ def main() -> int:
     for key, style in STYLES.items():
         s = score(style, priv, snd, spd)
         bar = "█" * int(s * 18)
-        print(f"- {style.name:24s} ({key}): {s:.3f} [{label(s)}] {bar}")
+               lbl = label(s)
+        print(f"- {style.name:24s} ({key}): {s:.3f} [{lbl}] {bar}")
+
         print(f"  {style.note}")
     print("")
 
