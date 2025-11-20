@@ -123,7 +123,7 @@ def label(score_val: float) -> str:
     best_score = max(s for _, _, s in scored_styles) if scored_styles else 0.0
 
 
-def main() -> None:
+def main() -> int:
     args = parse_args()
 
       priv = args.privacy
@@ -154,4 +154,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
+
