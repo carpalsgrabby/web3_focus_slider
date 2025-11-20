@@ -107,6 +107,9 @@ def print_table(styles: List[Web3Style], use_unicode: bool = True) -> None:
 
 def main() -> int:
     args = parse_args()
+    if not STYLES:
+        print("No styles available (STYLES is empty).")
+        return 0
 
     styles = sort_styles(args.sort_by)
     if args.keys_only:
