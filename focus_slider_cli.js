@@ -58,9 +58,15 @@ async function main() {
 
     const tx = await contract.setFocus(value);
     console.log(`Tx sent: ${tx.hash}`);
-    const receipt = await tx.wait();
+       const receipt = await tx.wait();
     console.log(`Tx mined in block ${receipt.blockNumber}`);
+    if (receipt.gasUsed && receipt.gasPrice) {
+      const gasUsed = receipt.gasUsed.toString();
+      const gasPriceGwei = ethers.formatUnits(receipt.gasPrice, "gwei");
+      console.log(`Gas used: ${gasUsed} @ ${gasPriceGwei} gwei`);
+    }
     return;
+
   }
 
   console.error(
