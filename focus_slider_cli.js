@@ -49,9 +49,17 @@ async function main() {
 
   if (cmd === "set") {
     if (arg === undefined) {
-      console.error("Usage: node focus_slider_cli.js set <value>");
-      process.exit(1);
-    }
+    console.error(
+    "Usage:\n" +
+      "  node focus_slider_cli.js get\n" +
+      "  node focus_slider_cli.js set <value>"
+  );
+  process.exit(2);
+// Exit codes:
+// 0 = success
+// 1 = configuration / environment error
+// 2 = bad CLI usage (unknown command, bad args)
+
 
     const value = BigInt(arg);
     console.log(`Setting focus to: ${value.toString()} ...`);
