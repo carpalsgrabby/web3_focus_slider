@@ -47,11 +47,18 @@ async function main() {
     return;
   }
 
-  if (cmd === "set") {
+   if (cmd === "set") {
     if (arg === undefined) {
       console.error("Usage: node focus_slider_cli.js set <value>");
       process.exit(1);
     }
+
+    if (!/^-?\d+$/.test(arg)) {
+      console.error("ERROR: <value> must be an integer (e.g. 0, 42, 1000).");
+      process.exit(1);
+    }
+
+    const value = BigInt(arg);
 
     const value = BigInt(arg);
     console.log(`Setting focus to: ${value.toString()} ...`);
