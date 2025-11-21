@@ -13,7 +13,7 @@ import argparse
 from dataclasses import dataclass
 from typing import Dict
 
-
+VERSION = "1.0.0"
 @dataclass
 class Web3Style:
     """
@@ -90,6 +90,12 @@ def parse_args() -> argparse.Namespace:
         prog="web3_focus_slider",
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
     )
+    p.add_argument(
+    "--version",
+    action="store_true",
+    help="Show version and exit."
+)
+
      p.add_argument("-p", "--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
 
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
@@ -128,6 +134,10 @@ def label(score_val: float) -> str:
 
 def main() -> int:
     args = parse_args()
+
+if args.version:
+    print(f"web3_focus_slider version {VERSION}")
+    return 0
 
       priv = args.privacy
     snd = args.soundness
