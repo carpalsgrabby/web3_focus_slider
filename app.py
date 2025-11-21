@@ -133,6 +133,7 @@ def main() -> int:
     snd = args.soundness
     spd = args.speed
 
+    # Clamp user inputs into [0, 10] so scoring remains well-defined.
     if not (0 <= priv <= 10):
         print(f"WARNING: --privacy {priv} is out of range, clamping to [0,10].")
         priv = max(0, min(10, priv))
