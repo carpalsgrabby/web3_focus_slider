@@ -8,8 +8,11 @@ const RPC_URL = process.env.RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
 const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 
-// minimal ABI for a simple focus slider contract
+// Minimal ABI for a simple focus slider contract:
+// - getFocus(): view-only getter
+// - setFocus(uint256): updates the stored focus value
 const ABI = [
+
   "function getFocus() view returns (uint256)",
   "function setFocus(uint256 newFocus)",
 ];
