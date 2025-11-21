@@ -2,7 +2,12 @@
 
 
 const { ethers } = require("ethers");
+const RED = "\x1b[31m";
+const RESET = "\x1b[0m";
 
+function err(msg) {
+  console.error(RED + msg + RESET);
+}
 // --- config from env ---
 const RPC_URL = process.env.RPC_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
@@ -18,9 +23,10 @@ async function main() {
   const [cmd, arg] = process.argv.slice(2);
 
   if (!RPC_URL || !CONTRACT_ADDRESS) {
-    console.error(
+    err(
       "ERROR: RPC_URL and CONTRACT_ADDRESS must be set in the environment."
     );
+
     process.exit(1);
   }
 
