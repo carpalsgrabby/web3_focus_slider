@@ -31,12 +31,16 @@ async function main() {
       return new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
     }
 
-    if (!PRIVATE_KEY) {
+       if (!PRIVATE_KEY) {
       console.error(
         "ERROR: PRIVATE_KEY must be set in the environment to call 'set'."
       );
+      console.error(
+        "Hint: never commit PRIVATE_KEY to git; use a .env file or secret manager."
+      );
       process.exit(1);
     }
+
     const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
     return new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
   })();
