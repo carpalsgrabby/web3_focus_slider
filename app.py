@@ -91,6 +91,11 @@ def parse_args() -> argparse.Namespace:
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
     )
      p.add_argument("-p", "--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
+        p.add_argument(
+        "--no-unicode",
+        action="store_true",
+        help="Disable Unicode symbols in output.",
+    )
 
     p.add_argument("--soundness", type=int, default=7, help="Soundness / proofs importance (0–10, default 7).")
     p.add_argument("--speed", type=int, default=6, help="UX speed importance (0–10, default 6).")
