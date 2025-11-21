@@ -16,6 +16,14 @@ const ABI = [
 
 async function main() {
   const [cmd, arg] = process.argv.slice(2);
+  if (!cmd) {
+    console.error(
+      "Usage:\n" +
+        "  node focus_slider_cli.js get\n" +
+        "  node focus_slider_cli.js set <value>"
+    );
+    process.exit(1);
+  }
 
   if (!RPC_URL || !CONTRACT_ADDRESS) {
     console.error(
