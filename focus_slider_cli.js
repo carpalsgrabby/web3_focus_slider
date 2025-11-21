@@ -24,6 +24,12 @@ async function main() {
     process.exit(1);
   }
 
+  if (!RPC_URL.startsWith("http")) {
+    console.error("ERROR: RPC_URL does not look like a valid HTTP(s) URL.");
+    process.exit(1);
+  }
+
+
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const contract = (() => {
     if (cmd === "get") {
