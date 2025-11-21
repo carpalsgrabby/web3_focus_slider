@@ -129,7 +129,7 @@ def label(score_val: float) -> str:
 def main() -> int:
     args = parse_args()
 
-      priv = args.privacy
+    priv = args.privacy
     snd = args.soundness
     spd = args.speed
 
