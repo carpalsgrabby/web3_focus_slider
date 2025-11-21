@@ -46,7 +46,10 @@ async function main() {
     console.log(`Current focus: ${focus.toString()}`);
     return;
   }
-
+  if (!ethers.isAddress(CONTRACT_ADDRESS)) {
+    console.error("ERROR: CONTRACT_ADDRESS is not a valid Ethereum address.");
+    process.exit(1);
+  }
   if (cmd === "set") {
     if (arg === undefined) {
       console.error("Usage: node focus_slider_cli.js set <value>");
