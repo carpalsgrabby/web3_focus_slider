@@ -37,7 +37,8 @@ async function main() {
       );
       process.exit(1);
     }
-    const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+      const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
+    console.error(`Using signer: ${wallet.address}`);
     return new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
   })();
 
