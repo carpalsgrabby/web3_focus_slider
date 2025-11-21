@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 web3_focus_slider
 
