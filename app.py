@@ -133,8 +133,8 @@ def main() -> int:
     snd = args.soundness
     spd = args.speed
 
-    if not (0 <= priv <= 10):
-        print(f"WARNING: --privacy {priv} is out of range, clamping to [0,10].")
+       if not (0 <= priv <= 10):
+        print(f"WARNING: --privacy {priv} is out of range, clamping to [0,10].", file=sys.stderr)
         priv = max(0, min(10, priv))
     if not (0 <= snd <= 10):
         print(f"WARNING: --soundness {snd} is out of range, clamping to [0,10].")
