@@ -148,15 +148,21 @@ def main() -> int:
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
     print("")
     print("Profiles:")
+    scored = []
     for key, style in STYLES.items():
         s = score(style, priv, snd, spd)
-        bar = "█" * int(s * 18)
-               lbl = label(s)
-        print(f"- {style.name:24s} ({key}): {s:.3f} [{lbl}] {bar}")
+        scored.append((s, key, style))
 
+    scored.sort(reverse=True, key=lambda t: t[0])
+
+    for s, key, style in scored:
+        bar = "█" * int(s * 18)
+        lbl = label(s)
+        print(f"- {style.name:24s} ({key}): {s:.3f} [{lbl}] {bar}")
         print(f"  {style.note}")
-         print("-" * 40)
+        print("-" * 40)
     print("")
+
 
 
 if __name__ == "__main__":
