@@ -13,6 +13,8 @@ import argparse
 from dataclasses import dataclass
 from typing import Dict
 
+__all__ = ["Web3Style", "STYLES", "score", "label", "main"]
+
 
 @dataclass
 class Web3Style:
