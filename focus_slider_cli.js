@@ -4,9 +4,9 @@
 const { ethers } = require("ethers");
 
 // --- config from env ---
-const RPC_URL = process.env.RPC_URL;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
+const RPC_URL = process.env.RPC_URL?.trim();
+const PRIVATE_KEY = process.env.PRIVATE_KEY?.trim();
+const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS?.trim();
 
 // minimal ABI for a simple focus slider contract
 const ABI = [
