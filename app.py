@@ -143,7 +143,7 @@ def main() -> int:
         print(f"WARNING: --speed {spd} is out of range, clamping to [0,10].")
         spd = max(0, min(10, spd))
 
-      title = "🎚  web3_focus_slider" if not args.no_unicode else "web3_focus_slider"
+    title = "🎚  web3_focus_slider" if not args.no_unicode else "web3_focus_slider"
     print(title)
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
     print("")
