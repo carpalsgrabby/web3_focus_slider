@@ -147,7 +147,7 @@ def main() -> int:
       title = "🎚  web3_focus_slider" if not args.no_unicode else "web3_focus_slider"
     print(title)
     print(f"Needs -> privacy: {priv}/10, soundness: {snd}/10, UX speed: {spd}/10")
-    print("")
+    print("-" * 40)
     print("Profiles:")
     for key, style in STYLES.items():
         s = score(style, priv, snd, spd)
