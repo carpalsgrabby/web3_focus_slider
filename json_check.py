@@ -23,8 +23,13 @@ def main():
     print(f"=== Checking JSON file: {path} ===")
 
     # size
-    size = os.path.getsize(path)
-    print(f"File size: {size} bytes")
+     size = os.path.getsize(path)
+    kb = size / 1024
+    mb = kb / 1024
+    print(f"File size: {size} bytes (~{kb:.2f} KB / {mb:.2f} MB)")
+    if mb > 10:
+        print("[WARN] This is a large JSON file; loading may be slow.")
+
 
     # load JSON
     try:
