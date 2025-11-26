@@ -2,6 +2,8 @@
 import os
 import sys
 from web3 import Web3
+EXIT_OK = 0
+EXIT_ERROR = 1
 
 
 REQUIRED_VARS = [
