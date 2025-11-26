@@ -43,10 +43,26 @@ def check_rpc():
         print(f"[!!] RPC error: {e}")
         return False
 
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        description="Check required env vars and a Web3 RPC endpoint."
+    )
+    parser.add_argument(
+        "--rpc-url",
+        help="Override RPC_URL environment variable for this run.",
+    )
+    return parser
 
-def main():
+def main() -> None:
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.rpc_url:
+        os.environ["RPC_URL"] = args.rpc_url
+
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
+
 
     print("\n=== RESULT ===")
     if ok_env and ok_rpc:
