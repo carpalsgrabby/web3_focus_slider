@@ -76,6 +76,7 @@ def cmd_list(as_json: bool) -> None:
 
 
 def cmd_show(name: str, as_json: bool) -> None:
+    """Show a single focus preset by name, optionally as JSON."""
     preset = PRESETS.get(name)
     if preset is None:
         print(f"ERROR: unknown preset '{name}'. Choices: {', '.join(PRESETS.keys())}", file=sys.stderr)
