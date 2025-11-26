@@ -9,7 +9,7 @@ REQUIRED_VARS = [
     "PRIVATE_KEY",
     "CONTRACT_ADDRESS",
 ]
-
+QUIET = False
 
 def check_env_vars():
     print("=== Checking environment variables ===")
@@ -51,6 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--rpc-url",
         help="Override RPC_URL environment variable for this run.",
     )
+        parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Only print the final result line.",
+    )
+
     return parser
 
 def main() -> None:
@@ -71,6 +77,9 @@ def main() -> None:
     else:
         print("Some checks FAILED ❌")
         sys.exit(1)
+def log(msg: str) -> None:
+    if not QUIET:
+        print(msg)
 
 
 if __name__ == "__main__":
