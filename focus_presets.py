@@ -38,7 +38,17 @@ PRESETS: Dict[str, FocusPreset] = {
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
-        description="Preset manager for web3_focus_slider."
+        description="Preset manager for web3_focus_slider.",
+        epilog=(
+            "Examples:\n"
+            "  web3_focus_slider_presets.py list\n"
+            "  web3_focus_slider_presets.py list --json\n"
+            "  web3_focus_slider_presets.py show balanced\n"
+            "  web3_focus_slider_presets.py show max --json"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+cus_slider."
     )
     sub = p.add_subparsers(dest="command", required=True)
 
