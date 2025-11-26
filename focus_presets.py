@@ -63,6 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def cmd_list(as_json: bool) -> None:
+    """List all configured focus presets, optionally as JSON."""
     if as_json:
         data = [asdict(p) for p in PRESETS.values()]
         json.dump(data, sys.stdout, indent=2, sort_keys=True)
