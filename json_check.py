@@ -37,15 +37,15 @@ def main():
     print("[OK] JSON is valid.")
 
     # summarize
-    if isinstance(data, dict):
+     if isinstance(data, dict):
         print(f"Top-level type: object")
-        print(f"Number of keys: {len(data)}")
-        print("Keys:", ", ".join(list(data.keys())[:10]), "…")
-    elif isinstance(data, list):
-        print("Top-level type: array")
-        print(f"Number of items: {len(data)}")
-    else:
-        print(f"Top-level type: {type(data).__name__}")
+        num_keys = len(data)
+        print(f"Number of keys: {num_keys}")
+        keys = list(data.keys())
+        max_keys = 10
+        shown_keys = keys[:max_keys]
+        suffix = "…" if num_keys > max_keys else ""
+        print("Keys:", ", ".join(shown_keys), suffix)
 
     # preview
     preview = json.dumps(data, indent=2)[:300]
