@@ -11,17 +11,22 @@ REQUIRED_VARS = [
 ]
 
 
-def check_env_vars():
+def check_env_vars() -> bool:
     print("=== Checking environment variables ===")
     missing = False
     for var in REQUIRED_VARS:
         val = os.getenv(var)
         if val:
-            print(f"[OK] {var} is set")
+            if var in {"PRIVATE_KEY"}:
+                display_val = "***redacted***"
+            else:
+                display_val = val
+            print(f"[OK] {var} is set (value: {display_val})")
         else:
             print(f"[!!] {var} is NOT set")
             missing = True
     return not missing
+
 
 
 def check_rpc():
