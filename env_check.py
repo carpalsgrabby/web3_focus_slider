@@ -3,6 +3,9 @@ import os
 import sys
 from web3 import Web3
 
+GREEN = "\033[92m"
+RED = "\033[91m"
+RESET = "\033[0m"
 
 REQUIRED_VARS = [
     "RPC_URL",
@@ -17,9 +20,9 @@ def check_env_vars():
     for var in REQUIRED_VARS:
         val = os.getenv(var)
         if val:
-            print(f"[OK] {var} is set")
+    print(f"{GREEN}[OK]{RESET} {var} is set")
         else:
-            print(f"[!!] {var} is NOT set")
+         print(f"{RED}[!!]{RESET} {var} is NOT set")
             missing = True
     return not missing
 
