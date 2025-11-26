@@ -20,6 +20,21 @@ async function main() {
   console.error("focus-slider-cli starting...");
   const [cmd, arg] = process.argv.slice(2);
 
+  if (cmd === "--help" || cmd === "-h") {
+    console.log(
+      "Focus slider CLI\n\n" +
+        "Usage:\n" +
+        "  node focus_slider_cli.js get\n" +
+        "  node focus_slider_cli.js set <value>\n\n" +
+        "Env:\n" +
+        "  RPC_URL           JSON-RPC endpoint\n" +
+        "  PRIVATE_KEY       Signer key (required for 'set')\n" +
+        "  CONTRACT_ADDRESS  Deployed focus slider contract address"
+    );
+    process.exit(0);
+  }
+
+
   if (!RPC_URL || !CONTRACT_ADDRESS) {
     console.error(
       "ERROR: RPC_URL and CONTRACT_ADDRESS must be set in the environment."
