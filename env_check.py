@@ -4,11 +4,16 @@ import sys
 from web3 import Web3
 
 
+RPC_URL_VAR = "RPC_URL"
+PRIVATE_KEY_VAR = "PRIVATE_KEY"
+CONTRACT_ADDRESS_VAR = "CONTRACT_ADDRESS"
+
 REQUIRED_VARS = [
-    "RPC_URL",
-    "PRIVATE_KEY",
-    "CONTRACT_ADDRESS",
+    RPC_URL_VAR,
+    PRIVATE_KEY_VAR,
+    CONTRACT_ADDRESS_VAR,
 ]
+
 
 
 def check_env_vars():
