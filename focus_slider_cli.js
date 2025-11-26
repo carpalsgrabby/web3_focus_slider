@@ -83,7 +83,13 @@ async function main() {
   process.exit(1);
 }
 
-main().catch((err) => {
-  console.error("Unexpected error:", err);
-  process.exit(1);
-});
+async function runMain() {
+  try {
+    await main();
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    process.exit(1);
+  }
+}
+
+runMain();
