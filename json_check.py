@@ -16,11 +16,13 @@ def main():
     args = parse_args()
     path = args.file
 
-    if not os.path.isfile(path):
+     if not os.path.isfile(path):
         print(f"ERROR: file not found: {path}", file=sys.stderr)
-        sys.exit(1)
+        sys.exit(EXIT_NOT_FOUND)
 
-    print(f"=== Checking JSON file: {path} ===")
+    abs_path = os.path.abspath(path)
+    print(f"=== Checking JSON file: {abs_path} ===")
+
 
     # size
     size = os.path.getsize(path)
