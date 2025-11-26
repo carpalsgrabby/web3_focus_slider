@@ -32,7 +32,7 @@ def check_rpc():
 
     print("\n=== Checking RPC endpoint ===")
     try:
-        w3 = Web3(Web3.HTTPProvider(rpc))
+               w3 = make_web3(rpc)
         if not w3.is_connected():
             print("[!!] Cannot connect to RPC endpoint.")
             return False
@@ -44,7 +44,9 @@ def check_rpc():
         return False
 
 
-def main():
+def make_web3(rpc_url: str) -> Web3:
+    """Create a Web3 instance from an RPC URL."""
+    return Web3(Web3.HTTPProvider(rpc_url))
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
 
