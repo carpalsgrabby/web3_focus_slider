@@ -26,6 +26,11 @@ async function main() {
     );
     process.exit(1);
   }
+  if (RPC_URL.includes("your") && RPC_URL.includes("infura.io")) {
+    console.error(
+      "WARNING: RPC_URL looks like it still contains a placeholder Infura project key."
+    );
+  }
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
   const contract = (() => {
