@@ -141,7 +141,7 @@ def main() -> int:
     print("Profiles:")
     for key, style in STYLES.items():
         s = score(style, priv, snd, spd)
-        bar = "█" * int(s * 18)
+                bar = "█" * max(1, int(s * 18)) if s > 0 else ""
                lbl = label(s)
         print(f"- {style.name:24s} ({key}): {s:.3f} [{lbl}] {bar}")
 
