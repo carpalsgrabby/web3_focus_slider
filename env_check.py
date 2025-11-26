@@ -11,7 +11,8 @@ REQUIRED_VARS = [
 ]
 
 
-def check_env_vars():
+def check_env_vars() -> bool:
+    """Check that all required environment variables are set."""
     print("=== Checking environment variables ===")
     missing = False
     for var in REQUIRED_VARS:
