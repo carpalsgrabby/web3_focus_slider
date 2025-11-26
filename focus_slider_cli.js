@@ -102,7 +102,17 @@ async function main() {
       process.exit(1);
     }
 
-    const value = BigInt(arg);
+    let parsedArg = arg;
+    if (/^0x[0-9a-fA-F]+$/.test(arg)) {
+      // allow hex input
+      parsedArg = BigInt(arg).toString();
+    } else if (!/^-?\d+$/.test(arg)) {
+      console.error("ERROR: <value> must be an integer or 0x-prefixed hex.");
+      process.exit(1);
+    }
+
+    const value = BigInt(parsedArg);
+
     console.log(`Setting focus to: ${value.toString()} ...`);
 
     const tx = await contract.setFocus(value);
