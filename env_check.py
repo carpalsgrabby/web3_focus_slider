@@ -9,6 +9,12 @@ REQUIRED_VARS = [
     "PRIVATE_KEY",
     "CONTRACT_ADDRESS",
 ]
+KNOWN_CHAINS = {
+    1: "Ethereum Mainnet",
+    5: "Goerli Testnet",
+    11155111: "Sepolia Testnet",
+    137: "Polygon",
+}
 
 
 def check_env_vars():
@@ -39,6 +45,12 @@ def check_rpc():
         print("[OK] RPC is reachable.")
         print(f"Chain ID: {w3.eth.chain_id}")
         return True
+                chain_id = w3.eth.chain_id
+        print(f"Chain ID: {chain_id}")
+        chain_name = KNOWN_CHAINS.get(chain_id, "Unknown network")
+        print(f"Network: {chain_name}")
+        return True
+
     except Exception as e:
         print(f"[!!] RPC error: {e}")
         return False
