@@ -49,6 +49,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Output presets as JSON.",
     )
+    p_list.add_argument(
+        "--name-only",
+        action="store_true",
+        help="Only print preset names, one per line."
+    )
 
     # show
     p_show = sub.add_parser("show", help="Show a single preset by name.")
@@ -61,6 +66,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     return p
 
+    if as_json:
+        ...
+        return
+
+    if name_only:
+        for name in sorted(PRESETS.keys()):
+            print(name)
+        return
 
 def cmd_list(as_json: bool) -> None:
     if as_json:
