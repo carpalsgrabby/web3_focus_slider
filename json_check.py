@@ -8,6 +8,12 @@ import sys
 
 def parse_args():
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
+        p.add_argument(
+        "--indent",
+        type=int,
+        default=2,
+        help="Indent level for the JSON preview (default: 2).",
+    )
     p.add_argument("file", help="Path to JSON file.")
     return p.parse_args()
 
@@ -21,6 +27,7 @@ def main():
         sys.exit(1)
 
     print(f"=== Checking JSON file: {path} ===")
+   
 
     # size
     size = os.path.getsize(path)
@@ -48,7 +55,8 @@ def main():
         print(f"Top-level type: {type(data).__name__}")
 
     # preview
-    preview = json.dumps(data, indent=2)[:300]
+       preview = json.dumps(data, indent=args.indent)[:args.max_preview]
+
     print("\nPreview:")
     print(preview)
     if len(preview) == 300:
