@@ -43,18 +43,34 @@ def check_rpc():
         print(f"[!!] RPC error: {e}")
         return False
 
+def check_contract_address() -> bool:
+    addr = os.getenv("CONTRACT_ADDRESS")
+    if not addr:
+        print("\nSkipping contract address check — CONTRACT_ADDRESS missing.")
+        return False
 
-def main():
+    print("\n=== Checking CONTRACT_ADDRESS format ===")
+    if not Web3.is_address(addr):
+        print(f"[!!] CONTRACT_ADDRESS '{addr}' is not a valid address format.")
+        return False
+
+    checksum = Web3.to_checksum_address(addr)
+    print(f"[OK] CONTRACT_ADDRESS is valid. Checksum: {checksum}")
+    return True
+
+def main() -> None:
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
+    ok_contract = check_contract_address()
 
     print("\n=== RESULT ===")
-    if ok_env and ok_rpc:
+    if ok_env and ok_rpc and ok_contract:
         print("Environment looks good ✔️")
         sys.exit(0)
     else:
         print("Some checks FAILED ❌")
         sys.exit(1)
+
 
 
 if __name__ == "__main__":
