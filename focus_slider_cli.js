@@ -66,7 +66,8 @@ async function main() {
 
   if (cmd === "set") {
     if (arg === undefined) {
-      console.error("Usage: node focus_slider_cli.js set <value>");
+           const script = process.argv[1] || "focus_slider_cli.js";
+      console.error(`Usage: node ${script} set <value>`);
       process.exit(1);
     }
 
@@ -86,12 +87,13 @@ async function main() {
 
   }
 
+  const script = process.argv[1] || "focus_slider_cli.js";
   console.error(
     "Usage:\n" +
-      "  node focus_slider_cli.js get\n" +
-      "  node focus_slider_cli.js set <value>"
+      `  node ${script} get\n` +
+      `  node ${script} set <value>`
   );
-  process.exit(1);
+
 }
 
 async function runMain() {
