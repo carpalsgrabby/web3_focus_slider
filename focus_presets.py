@@ -76,9 +76,13 @@ def cmd_list(as_json: bool) -> None:
 
 
 def cmd_show(name: str, as_json: bool) -> None:
-    preset = PRESETS.get(name)
+    normalized_name = name.lower()
+    preset = PRESETS.get(normalized_name)
     if preset is None:
-        print(f"ERROR: unknown preset '{name}'. Choices: {', '.join(PRESETS.keys())}", file=sys.stderr)
+        print(
+            f"ERROR: unknown preset '{name}'. Choices: {', '.join(sorted(PRESETS.keys()))}",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     if as_json:
