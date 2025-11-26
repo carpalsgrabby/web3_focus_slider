@@ -53,11 +53,16 @@ async function main() {
     return new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
   })();
 
-  if (cmd === "get") {
+  if (cmd === "get" || cmd === "get-raw") {
     const focus = await contract.getFocus();
-    console.log(`Current focus: ${focus.toString()}`);
+    if (cmd === "get-raw") {
+      console.log(focus.toString());
+    } else {
+      console.log(`Current focus: ${focus.toString()}`);
+    }
     return;
   }
+
 
   if (cmd === "set") {
     if (arg === undefined) {
