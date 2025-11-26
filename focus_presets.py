@@ -52,12 +52,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     # show
     p_show = sub.add_parser("show", help="Show a single preset by name.")
-    p_show.add_argument("name", help="Preset name (chill / balanced / max).")
+     p_show = sub.add_parser("show", help="Show a single preset by name.")
     p_show.add_argument(
-        "--json",
-        action="store_true",
-        help="Output the preset as JSON.",
+        "name",
+        help=f"Preset name ({get_preset_names()})."
     )
+
 
     return p
 
