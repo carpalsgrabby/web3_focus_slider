@@ -30,9 +30,12 @@ def main():
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"[!!] Invalid JSON syntax: {e}", file=sys.stderr)
+        sys.exit(EXIT_INVALID_JSON)
     except Exception as e:
-        print(f"[!!] Invalid JSON: {e}")
-        sys.exit(2)
+        print(f"[!!] Error reading file: {e}", file=sys.stderr)
+        sys.exit(EXIT_INVALID_JSON)
 
     print("[OK] JSON is valid.")
 
