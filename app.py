@@ -112,19 +112,9 @@ def label(score_val: float) -> str:
         return "excellent"
     if score_val >= 0.65:
         return "good"
-    if score_val >= 0.5:
+      if score_val >= 0.5:
         return "ok"
     return "weak"
-
-    scored_styles = []
-    for key, style in STYLES.items():
-        s = score(style, priv, snd, spd)
-        scored_styles.append((key, style, s))
-
-    best_score = max(s for _, _, s in scored_styles) if scored_styles else 0.0
-
-
-    best_score = max(s for _, _, s in scored_styles) if scored_styles else 0.0
 
 
 def main() -> int:
