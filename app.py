@@ -87,9 +87,9 @@ def parse_args() -> argparse.Namespace:
     Parse command-line arguments for the web3_focus_slider CLI.
     """
     p = argparse.ArgumentParser(
-
         prog="web3_focus_slider",
         description="Tiny Web3 style slider inspired by Aztec, Zama and soundness-first designs.",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
         p.add_argument("-p", "--privacy", type=int, default=8, help="Privacy importance (0–10, default 8).")
 
