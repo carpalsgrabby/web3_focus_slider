@@ -33,6 +33,10 @@ async function main() {
   }
 
   const provider = new ethers.JsonRpcProvider(RPC_URL);
+    const network = await provider.getNetwork();
+  console.error(
+    `Connected to chainId=${network.chainId.toString()} (${network.name || "unknown"})`
+  );
   const contract = (() => {
     if (cmd === "get") {
       // read-only: no signer needed
