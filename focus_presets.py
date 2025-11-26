@@ -93,6 +93,7 @@ def cmd_show(name: str, as_json: bool) -> None:
 
 
 def main() -> None:
+     """Entry point for the focus preset CLI."""
     parser = build_parser()
     args = parser.parse_args()
 
