@@ -159,7 +159,7 @@ def main() -> int:
          print("-" * 40)
     print("")
 
-
+return 0
 if __name__ == "__main__":
     raise SystemExit(main())
 
