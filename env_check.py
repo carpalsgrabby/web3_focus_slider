@@ -42,6 +42,10 @@ def check_rpc():
     except Exception as e:
         print(f"[!!] RPC error: {e}")
         return False
+        if not w3.is_connected():
+            print("[!!] Cannot connect to RPC endpoint.")
+            print("     Tip: check network/firewall and the RPC_URL value.")
+            return False
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
