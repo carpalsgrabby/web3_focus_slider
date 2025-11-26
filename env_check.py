@@ -44,7 +44,8 @@ def check_rpc():
         return False
 
 
-def main():
+def main() -> None:
+    """Run environment and RPC checks and exit with a status code."""
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
 
