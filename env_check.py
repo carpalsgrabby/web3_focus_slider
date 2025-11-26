@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""Simple environment + RPC checker for a Web3 project.
+
+Checks required environment variables and verifies that the RPC
+endpoint is reachable and provides a chain ID.
+"""
 import os
 import sys
 from web3 import Web3
