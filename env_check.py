@@ -61,7 +61,11 @@ def main() -> None:
         os.environ["RPC_URL"] = args.rpc_url
 
     ok_env = check_env_vars()
-    ok_rpc = check_rpc()
+     ok_rpc = check_rpc()
+
+    if ok_rpc is None:
+        print("\n[WARN] RPC check was skipped (no RPC_URL).")
+
 
 
     print("\n=== RESULT ===")
