@@ -11,7 +11,7 @@ REQUIRED_VARS = [
 ]
 
 
-def check_env_vars():
+def check_env_vars() -> bool:
     print("=== Checking environment variables ===")
     missing = False
     for var in REQUIRED_VARS:
@@ -24,7 +24,7 @@ def check_env_vars():
     return not missing
 
 
-def check_rpc():
+def check_rpc() -> bool:
     rpc = os.getenv("RPC_URL")
     if not rpc:
         print("\nSkipping RPC check — RPC_URL missing.")
@@ -44,7 +44,7 @@ def check_rpc():
         return False
 
 
-def main():
+def main() -> None:
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
 
@@ -56,6 +56,7 @@ def main():
         print("Some checks FAILED ❌")
         sys.exit(1)
 
+    main()
 
 if __name__ == "__main__":
     main()
