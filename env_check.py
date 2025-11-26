@@ -45,7 +45,14 @@ def check_rpc():
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Check required env vars and a Web3 RPC endpoint."
+        description="Check required environment variables and Web3 RPC.",
+        epilog=(
+            "Examples:\n"
+            "  env_check.py\n"
+            "  env_check.py --rpc-url https://example.com\n"
+            "  env_check.py --skip-rpc\n"
+            "  env_check.py --json\n"
+        ),
     )
     parser.add_argument(
         "--rpc-url",
