@@ -1,3 +1,8 @@
+"""Small CLI to validate and inspect a JSON file.
+
+- Verifies that the file exists and is valid JSON.
+- Prints a short summary and a preview of the contents.
+"""
 #!/usr/bin/env python3
 
 import argparse
