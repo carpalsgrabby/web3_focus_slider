@@ -24,15 +24,16 @@ def check_env_vars():
     return not missing
 
 
-def check_rpc():
+def check_rpc() -> bool:
     rpc = os.getenv("RPC_URL")
     if not rpc:
         print("\nSkipping RPC check — RPC_URL missing.")
         return False
 
     print("\n=== Checking RPC endpoint ===")
+    print(f"Using RPC URL: {rpc}")
     try:
-        w3 = Web3(Web3.HTTPProvider(rpc))
+        w3 = Web3(Web3.HTTPProvider(rpc)
         if not w3.is_connected():
             print("[!!] Cannot connect to RPC endpoint.")
             return False
