@@ -24,7 +24,8 @@ def check_env_vars():
     return not missing
 
 
-def check_rpc():
+def check_rpc() -> bool:
+    """Check that the configured RPC endpoint is reachable and returns a chain ID."""
     rpc = os.getenv("RPC_URL")
     if not rpc:
         print("\nSkipping RPC check — RPC_URL missing.")
