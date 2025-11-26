@@ -40,6 +40,11 @@ def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         description="Preset manager for web3_focus_slider."
     )
+    p.add_argument(
+        "--version",
+        action="version",
+        version="web3_focus_slider presets 1.0.0"
+    )
     sub = p.add_subparsers(dest="command", required=True)
 
     # list
