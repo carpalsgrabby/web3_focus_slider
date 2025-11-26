@@ -101,7 +101,7 @@ def main() -> None:
     elif args.command == "show":
         cmd_show(name=args.name, as_json=getattr(args, "json", False))
     else:
-        parser.error("Unknown command")
+        parser.error(f"Unknown command: {args.command!r}")
 
 
 if __name__ == "__main__":
