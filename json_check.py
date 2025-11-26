@@ -9,6 +9,12 @@ import sys
 def parse_args():
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
     p.add_argument("file", help="Path to JSON file.")
+        p.add_argument(
+        "--raw",
+        action="store_true",
+        help="Print the full JSON instead of a truncated preview.",
+    )
+
     return p.parse_args()
 
 
@@ -48,11 +54,15 @@ def main():
         print(f"Top-level type: {type(data).__name__}")
 
     # preview
-    preview = json.dumps(data, indent=2)[:300]
     print("\nPreview:")
-    print(preview)
-    if len(preview) == 300:
-        print("… (truncated)")
+    if args.raw:
+        print(json.dumps(data, indent=args.indent))
+    else:
+        preview = json.dumps(data, indent=args.indent)[:args.max_preview]
+        print(preview)
+        if len(preview) == args.max_preview:
+            print("… (truncated)")
+
 
 
 if __name__ == "__main__":
