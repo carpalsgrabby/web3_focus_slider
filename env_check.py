@@ -4,11 +4,13 @@ import sys
 from web3 import Web3
 
 
-REQUIRED_VARS = [
+from typing import Tuple
+
+REQUIRED_VARS: Tuple[str, ...] = (
     "RPC_URL",
     "PRIVATE_KEY",
     "CONTRACT_ADDRESS",
-]
+)
 
 
 def check_env_vars():
