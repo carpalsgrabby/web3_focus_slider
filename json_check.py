@@ -24,7 +24,9 @@ def main():
 
     # size
     size = os.path.getsize(path)
-    print(f"File size: {size} bytes")
+    kb = size / 1024
+    mb = kb / 1024
+    print(f"File size: {size} bytes (~{kb:.2f} KB / {mb:.2f} MB)")
 
     # load JSON
     try:
