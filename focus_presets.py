@@ -49,6 +49,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Output presets as JSON.",
     )
+    p_list.add_argument(
+        "--no-description",
+        action="store_true",
+        help="Hide preset descriptions in the text output."
+    )
 
     # show
     p_show = sub.add_parser("show", help="Show a single preset by name.")
@@ -62,7 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
-def cmd_list(as_json: bool) -> None:
+def cmd_list(as_json: bool, compact: bool = False, no_description: bool = False) -> None:
     if as_json:
         data = [asdict(p) for p in PRESETS.values()]
         json.dump(data, sys.stdout, indent=2, sort_keys=True)
@@ -70,10 +75,13 @@ def cmd_list(as_json: bool) -> None:
         return
 
     print("Available focus presets:")
-    for p in PRESETS.values():
-        print(f" - {p.name:8} ({p.value:3}): {p.label}")
-        print(f"     {p.description}")
-
+ or p in sorted(PRESETS.values(), key=lambda preset: preset.value):
+        if compact:
+            print(f"{p.name}: {p.value} ({p.label})")
+        else:
+            print(f" - {p.name:8} ({p.value:3}): {p.label}")
+            if not no_description:
+                print(f"     {p.description}")
 
 def cmd_show(name: str, as_json: bool) -> None:
     preset = PRESETS.get(name)
@@ -96,8 +104,12 @@ def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.command == "list":
-        cmd_list(as_json=getattr(args, "json", False))
+       if args.command == "list":
+        cmd_list(
+            as_json=getattr(args, "json", False),
+            compact=getattr(args, "compact", False),
+            no_description=getattr(args, "no_description", False),
+        )
     elif args.command == "show":
         cmd_show(name=args.name, as_json=getattr(args, "json", False))
     else:
