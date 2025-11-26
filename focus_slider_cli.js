@@ -16,6 +16,9 @@ const ABI = [
 
 async function main() {
   const [cmd, arg] = process.argv.slice(2);
+async function main() {
+  console.error("focus-slider-cli starting...");
+  const [cmd, arg] = process.argv.slice(2);
 
   if (!RPC_URL || !CONTRACT_ADDRESS) {
     console.error(
