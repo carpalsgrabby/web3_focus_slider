@@ -51,6 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--rpc-url",
         help="Override RPC_URL environment variable for this run.",
     )
+        parser.add_argument(
+        "--version",
+        action="version",
+        version="env_check 1.0.0",
+    )
+
     return parser
 
 def main() -> None:
