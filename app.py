@@ -69,7 +69,7 @@ def score(style: Web3Style, priv: int, snd: int, speed: int) -> float:
     """
     priv_n = clamp01(priv / 10.0)
     snd_n = clamp01(snd / 10.0)
-    spd_n = clamp01(speed / 10.0)
+
 
 
     m_priv = 1.0 - abs(priv_n - style.privacy)
