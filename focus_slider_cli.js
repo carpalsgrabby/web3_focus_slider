@@ -67,6 +67,7 @@ async function main() {
   const contract = (() => {
     if (cmd === "get") {
       // read-only: no signer needed
+      
       return new ethers.Contract(CONTRACT_ADDRESS, ABI, provider);
     }
 
@@ -83,6 +84,7 @@ async function main() {
     const wallet = new ethers.Wallet(PRIVATE_KEY, provider);
     return new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
   })();
+  console.error(`Target contract: ${CONTRACT_ADDRESS}`);
 
   if (cmd === "get" || cmd === "get-raw") {
     const focus = await contract.getFocus();
