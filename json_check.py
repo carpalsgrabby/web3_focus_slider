@@ -5,6 +5,9 @@ import json
 import os
 import sys
 
+EXIT_OK = 0
+EXIT_NOT_FOUND = 1
+EXIT_INVALID_JSON = 2
 
 def parse_args():
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
@@ -18,7 +21,8 @@ def main():
 
     if not os.path.isfile(path):
         print(f"ERROR: file not found: {path}", file=sys.stderr)
-        sys.exit(1)
+              sys.exit(EXIT_NOT_FOUND)
+
 
     print(f"=== Checking JSON file: {path} ===")
 
@@ -32,7 +36,8 @@ def main():
             data = json.load(f)
     except Exception as e:
         print(f"[!!] Invalid JSON: {e}")
-        sys.exit(2)
+           sys.exit(EXIT_INVALID_JSON)
+
 
     print("[OK] JSON is valid.")
 
