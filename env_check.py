@@ -36,8 +36,13 @@ def check_rpc():
         if not w3.is_connected():
             print("[!!] Cannot connect to RPC endpoint.")
             return False
-        print("[OK] RPC is reachable.")
+              print("[OK] RPC is reachable.")
         print(f"Chain ID: {w3.eth.chain_id}")
+        try:
+            client_version = w3.client_version
+            print(f"Client: {client_version}")
+        except Exception:
+            print("Client version unavailable.")
         return True
     except Exception as e:
         print(f"[!!] RPC error: {e}")
