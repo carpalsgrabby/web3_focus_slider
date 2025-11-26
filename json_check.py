@@ -6,13 +6,13 @@ import os
 import sys
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
     p.add_argument("file", help="Path to JSON file.")
     return p.parse_args()
 
 
-def main():
+def main() -> None:
     args = parse_args()
     path = args.file
 
