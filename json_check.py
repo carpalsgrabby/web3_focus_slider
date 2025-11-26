@@ -9,6 +9,12 @@ import sys
 def parse_args():
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
     p.add_argument("file", help="Path to JSON file.")
+        p.add_argument(
+        "--top-level-only",
+        action="store_true",
+        help="Skip printing the JSON preview and only show summary.",
+    )
+
     return p.parse_args()
 
 
@@ -21,6 +27,15 @@ def main():
         sys.exit(1)
 
     print(f"=== Checking JSON file: {path} ===")
+    if not args.top_level_only:
+        print("\nPreview:")
+        if args.raw:
+            print(json.dumps(data, indent=args.indent))
+        else:
+            preview = json.dumps(data, indent=args.indent)[:args.max_preview]
+            print(preview)
+            if len(preview) == args.max_preview:
+                print("… (truncated)")
 
     # size
     size = os.path.getsize(path)
