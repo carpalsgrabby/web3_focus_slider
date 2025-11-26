@@ -2,7 +2,7 @@
 import os
 import sys
 from web3 import Web3
-
+from typing import Optional
 
 REQUIRED_VARS = [
     "RPC_URL",
@@ -24,11 +24,14 @@ def check_env_vars():
     return not missing
 
 
-def check_rpc():
+
+
+def check_rpc() -> Optional[bool]:
     rpc = os.getenv("RPC_URL")
     if not rpc:
         print("\nSkipping RPC check — RPC_URL missing.")
-        return False
+        return None
+
 
     print("\n=== Checking RPC endpoint ===")
     try:
@@ -60,17 +63,16 @@ def main() -> None:
     if args.rpc_url:
         os.environ["RPC_URL"] = args.rpc_url
 
-    ok_env = check_env_vars()
+     ok_env = check_env_vars()
     ok_rpc = check_rpc()
 
-
     print("\n=== RESULT ===")
-    if ok_env and ok_rpc:
+    if ok_env and ok_rpc is not False:
         print("Environment looks good ✔️")
-        sys.exit(0)
+        sys.exit(EXIT_OK)
     else:
         print("Some checks FAILED ❌")
-        sys.exit(1)
+        sys.exit(EXIT_ERROR)
 
 
 if __name__ == "__main__":
