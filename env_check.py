@@ -51,6 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--rpc-url",
         help="Override RPC_URL environment variable for this run.",
     )
+        parser.add_argument(
+        "--skip-rpc",
+        action="store_true",
+        help="Skip the RPC connectivity check.",
+    )
+
     return parser
 
 def main() -> None:
@@ -61,7 +67,10 @@ def main() -> None:
         os.environ["RPC_URL"] = args.rpc_url
 
     ok_env = check_env_vars()
-    ok_rpc = check_rpc()
+    ok_rpc = True
+    if not args.skip_rpc:
+        ok_rpc = check_rpc()
+
 
 
     print("\n=== RESULT ===")
