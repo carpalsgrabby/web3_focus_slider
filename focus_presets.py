@@ -15,7 +15,7 @@ class FocusPreset:
 
 
 PRESETS: Dict[str, FocusPreset] = {
-    "chill": FocusPreset(
+    "chill": FocusPreset( 
         name="chill",
         value=20,
         label="Chill",
