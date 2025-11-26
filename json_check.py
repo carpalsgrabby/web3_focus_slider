@@ -12,9 +12,9 @@ def parse_args():
     return p.parse_args()
 
 
-def main():
+def main() -> None:
+    """Run JSON file checks and print a summary."""
     args = parse_args()
-    path = args.file
 
     if not os.path.isfile(path):
         print(f"ERROR: file not found: {path}", file=sys.stderr)
