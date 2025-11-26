@@ -9,7 +9,7 @@ inspired by Aztec-style zk rollups, Zama-style FHE, and soundness-first designs.
 Example:
     python web3_focus_slider.py --privacy 9 --soundness 8 --speed 5
 """
-
+__version__ = "0.1.0"
 import argparse
 from dataclasses import dataclass
 from typing import Dict
@@ -99,6 +99,12 @@ def parse_args() -> argparse.Namespace:
         "--no-unicode",
         action="store_true",
         help="Disable Unicode symbols in output.",
+    )
+    p.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+        help="Show version and exit.",
     )
 
     return p.parse_args()
