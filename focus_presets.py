@@ -43,11 +43,16 @@ def build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="command", required=True)
 
     # list
-    p_list = sub.add_parser("list", help="List all focus presets.")
+     p_list = sub.add_parser("list", help="List all focus presets.")
     p_list.add_argument(
         "--json",
         action="store_true",
         help="Output presets as JSON.",
+    )
+    p_list.add_argument(
+        "--compact",
+        action="store_true",
+        help="Use a single-line format for each preset."
     )
 
     # show
