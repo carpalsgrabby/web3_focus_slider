@@ -41,11 +41,13 @@ def main():
         print(f"Top-level type: object")
         print(f"Number of keys: {len(data)}")
         print("Keys:", ", ".join(list(data.keys())[:10]), "…")
-    elif isinstance(data, list):
+      elif isinstance(data, list):
         print("Top-level type: array")
         print(f"Number of items: {len(data)}")
-    else:
-        print(f"Top-level type: {type(data).__name__}")
+        sample = data[:3]
+        if sample:
+            print("First items sample:")
+            print(json.dumps(sample, indent=2)[:200])
 
     # preview
     preview = json.dumps(data, indent=2)[:300]
