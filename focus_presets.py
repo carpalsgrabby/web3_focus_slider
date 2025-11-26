@@ -49,6 +49,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Output presets as JSON.",
     )
+    p_list.add_argument(
+        "--label-only",
+        action="store_true",
+        help="Only print preset labels, one per line."
+    )
 
     # show
     p_show = sub.add_parser("show", help="Show a single preset by name.")
@@ -62,7 +67,7 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
-def cmd_list(as_json: bool) -> None:
+def cmd_list(..., name_only: bool = False, label_only: bool = False) -> None:
     if as_json:
         data = [asdict(p) for p in PRESETS.values()]
         json.dump(data, sys.stdout, indent=2, sort_keys=True)
@@ -74,7 +79,19 @@ def cmd_list(as_json: bool) -> None:
         print(f" - {p.name:8} ({p.value:3}): {p.label}")
         print(f"     {p.description}")
 
+  if name_only and label_only:
+        print("ERROR: --name-only and --label-only cannot be used together.", file=sys.stderr)
+        sys.exit(1)
 
+    if name_only:
+        for name in sorted(PRESETS.keys()):
+            print(name)
+        return
+
+    if label_only:
+        for p in sorted(PRESETS.values(), key=lambda preset: preset.value):
+            print(p.label)
+        return
 def cmd_show(name: str, as_json: bool) -> None:
     preset = PRESETS.get(name)
     if preset is None:
