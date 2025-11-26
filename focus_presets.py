@@ -74,8 +74,15 @@ def cmd_list(as_json: bool) -> None:
         print(f" - {p.name:8} ({p.value:3}): {p.label}")
         print(f"     {p.description}")
 
+PRESET_ALIASES: Dict[str, str] = {
+    "c": "chill",
+    "b": "balanced",
+    "m": "max",
+}
 
 def cmd_show(name: str, as_json: bool) -> None:
+    normalized_name = name.lower()
+    resolved_name = PRESET_ALIASES.get(normalized_name, normalized_name)
     preset = PRESETS.get(name)
     if preset is None:
         print(f"ERROR: unknown preset '{name}'. Choices: {', '.join(PRESETS.keys())}", file=sys.stderr)
