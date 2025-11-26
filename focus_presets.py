@@ -91,7 +91,9 @@ def cmd_show(name: str, as_json: bool) -> None:
     print(f"  Focus value: {preset.value}")
     print(f"  Description: {preset.description}")
 
-
+def get_preset_names() -> str:
+    """Return a human-friendly list of preset names."""
+    return " / ".join(sorted(PRESETS.keys()))
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
