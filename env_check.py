@@ -9,7 +9,7 @@ REQUIRED_VARS = [
     "PRIVATE_KEY",
     "CONTRACT_ADDRESS",
 ]
-
+SENSITIVE_VARS = {PRIVATE_KEY_VAR}
 
 def check_env_vars():
     print("=== Checking environment variables ===")
