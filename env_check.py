@@ -51,6 +51,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--rpc-url",
         help="Override RPC_URL environment variable for this run.",
     )
+        parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print a JSON summary instead of human-readable result.",
+    )
+
     return parser
 
 def main() -> None:
@@ -63,6 +69,16 @@ def main() -> None:
     ok_env = check_env_vars()
     ok_rpc = check_rpc()
 
+
+     if args.json:
+        import json
+
+        result = {
+            "env_ok": ok_env,
+            "rpc_ok": ok_rpc,
+        }
+        print(json.dumps(result, indent=2, sort_keys=True))
+        sys.exit(0 if ok_env and ok_rpc else 1)
 
     print("\n=== RESULT ===")
     if ok_env and ok_rpc:
