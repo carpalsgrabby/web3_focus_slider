@@ -11,7 +11,8 @@ import json
 import sys
 from dataclasses import dataclass, asdict
 from typing import Dict
-
+MIN_FOCUS = 0
+MAX_FOCUS = 100
 
 @dataclass
 class FocusPreset:
