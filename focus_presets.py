@@ -4,7 +4,10 @@ Usage examples:
   python focus_presets.py list
   python focus_presets.py show balanced
   python focus_presets.py show max --json
+
+Preset names are case-insensitive (e.g. 'Chill' and 'chill' both work).
 """
+
 #!/usr/bin/env python3
 import argparse
 import json
@@ -91,10 +94,15 @@ def cmd_list(as_json: bool) -> None:
 
 
 def cmd_show(name: str, as_json: bool) -> None:
-    preset = PRESETS.get(name)
+    lookup_name = name.lower()
+    preset = PRESETS.get(lookup_name)
     if preset is None:
-        print(f"ERROR: unknown preset '{name}'. Choices: {', '.join(PRESETS.keys())}", file=sys.stderr)
+        print(
+            f"ERROR: unknown preset '{name}'. Choices: {', '.join(PRESETS.keys())}",
+            file=sys.stderr,
+        )
         sys.exit(1)
+
 
     if as_json:
         json.dump(asdict(preset), sys.stdout, indent=2, sort_keys=True)
