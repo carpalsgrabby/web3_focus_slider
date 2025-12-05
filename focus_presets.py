@@ -78,14 +78,16 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def cmd_list(as_json: bool) -> None:
+    presets_sorted = sorted(PRESETS.values(), key=lambda p: p.value)
+
     if as_json:
-        data = [asdict(p) for p in PRESETS.values()]
+        data = [asdict(p) for p in presets_sorted]
         json.dump(data, sys.stdout, indent=2, sort_keys=True)
         sys.stdout.write("\n")
         return
 
-    print("Available focus presets:")
-    for p in PRESETS.values():
+    print("Available focus presets (sorted by focus value):")
+    for p in presets_sorted:
         print(f" - {p.name:8} ({p.value:3}): {p.label}")
         print(f"     {p.description}")
 
