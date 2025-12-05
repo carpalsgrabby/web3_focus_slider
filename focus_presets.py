@@ -85,9 +85,10 @@ def cmd_list(as_json: bool) -> None:
         return
 
     print("Available focus presets:")
-    for p in PRESETS.values():
+    for p in sorted(PRESETS.values(), key=lambda preset: preset.value):
         print(f" - {p.name:8} ({p.value:3}): {p.label}")
         print(f"     {p.description}")
+
 
 
 def cmd_show(name: str, as_json: bool) -> None:
