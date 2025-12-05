@@ -21,6 +21,13 @@ class FocusPreset:
     label: str
     description: str
 
+    def __post_init__(self) -> None:
+        if not (MIN_FOCUS <= self.value <= MAX_FOCUS):
+            raise ValueError(
+                f"Focus value for preset '{self.name}' must be between "
+                f"{MIN_FOCUS} and {MAX_FOCUS}, got {self.value}"
+            )
+
 
 PRESETS: Dict[str, FocusPreset] = {
     "chill": FocusPreset(
