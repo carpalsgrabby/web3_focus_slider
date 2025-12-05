@@ -1,3 +1,10 @@
+"""CLI preset manager for web3_focus_slider.
+
+Usage examples:
+  python focus_presets.py list
+  python focus_presets.py show balanced
+  python focus_presets.py show max --json
+"""
 #!/usr/bin/env python3
 import argparse
 import json
