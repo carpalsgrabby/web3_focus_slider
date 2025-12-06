@@ -8,6 +8,13 @@ import sys
 
 def parse_args():
     p = argparse.ArgumentParser(description="Validate and inspect a JSON file.")
+        p.add_argument(
+        "--max-preview",
+        type=int,
+        default=300,
+        help="Maximum number of characters to show in the JSON preview (default: 300).",
+    )
+
     p.add_argument("file", help="Path to JSON file.")
     return p.parse_args()
 
@@ -48,11 +55,12 @@ def main():
         print(f"Top-level type: {type(data).__name__}")
 
     # preview
-    preview = json.dumps(data, indent=2)[:300]
+    preview = json.dumps(data, indent=2)[:args.max_preview]
     print("\nPreview:")
     print(preview)
-    if len(preview) == 300:
+    if len(preview) == args.max_preview:
         print("… (truncated)")
+
 
 
 if __name__ == "__main__":
